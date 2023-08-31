@@ -10,15 +10,47 @@ class AuthLayaut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          //desktop
-          _DesktopBody(child: child),  
-          //mobile
+          (size.width > 1000) ?  _DesktopBody(child: child) : _MobileBody(child: child),
           //linksbar
           const LinkBar(),
+        ],
+      )
+    );
+  }
+}
+
+class _MobileBody extends StatelessWidget {
+
+  final Widget child;
+
+  const _MobileBody({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+           const SizedBox(height: 20,),
+           const CustomTitle(), 
+           Container(
+            width: double.infinity,
+            height: 420,
+            child: child,
+           ),
+           Container(
+            width: double.infinity,
+            height: 400,
+            child: CustomBackground(),
+           ),
         ],
       )
     );
@@ -38,7 +70,7 @@ class _DesktopBody extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height * 0.95,
-      color: Colors.greenAccent,
+      color: Colors.black,
       child: Row(
         children: [
           //backgroud

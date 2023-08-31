@@ -9,8 +9,9 @@ class LinkBar extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       color: Colors.black,
-      height: size.height * 0.05,
+      height: (size.width > 1000) ?  size.height * 0.07 : null,
       child: const Wrap(
+        alignment: WrapAlignment.center,
         children: [
           LinkText(text: 'About'),
           LinkText(text: 'Help Center'),
@@ -23,7 +24,7 @@ class LinkBar extends StatelessWidget {
           LinkText(text: 'Careers'),
           LinkText(text: 'Brand Resources'),
           LinkText(text: 'Advertising'),
-          LinkText(text: 'BraMarketing'),
+          LinkText(text: 'Marketing'),
         ],
       ),
     );

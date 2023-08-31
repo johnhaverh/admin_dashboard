@@ -5,8 +5,8 @@ import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outline_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +23,12 @@ class LoginView extends StatelessWidget {
                 TextFormField(
                   //validator: xx,
                   style: const TextStyle(color: Colors.white),
+                  decoration: CustomInputs.loginInputDecaration(hint: 'Ingrese su nombre', label: 'Nombre', icon: Icons.supervised_user_circle_sharp),
+                ),
+                const SizedBox(height: 20,),
+                TextFormField(
+                  //validator: xx,
+                  style: const TextStyle(color: Colors.white),
                   decoration: CustomInputs.loginInputDecaration(hint: 'Ingrese su correo', label: 'Email', icon: Icons.email_outlined),
                 ),
                 const SizedBox(height: 20,),
@@ -33,8 +39,8 @@ class LoginView extends StatelessWidget {
                   decoration: CustomInputs.loginInputDecaration(hint: '********', label: 'Contraseña', icon: Icons.lock_outline_rounded),
                 ),
                 const SizedBox(height: 20,),
-                CustomOutlineBUtton(onPressed: (){}, text: 'Ingrear',isFilled: true,),
-                LinkText(text: 'Nueva cuenta', onPressed: () {Navigator.pushNamed(context, Flurorouter.registerRoute);})
+                CustomOutlineBUtton(onPressed: (){}, text: 'Crear cuenta',isFilled: true,),
+                LinkText(text: 'Ir al login', onPressed: () {Navigator.pushNamed(context, Flurorouter.loginRoute);})
 
 
               ],
@@ -43,5 +49,6 @@ class LoginView extends StatelessWidget {
         )
       )
     );
-  }    
+  }
+    
 }

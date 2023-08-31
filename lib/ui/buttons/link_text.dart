@@ -19,8 +19,9 @@ class _LinkTextState extends State<LinkText> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(widget.onPressed != null)
+        if(widget.onPressed != null) {
           widget.onPressed!();
+        }
       },
       child: MouseRegion(
         cursor: SystemMouseCursors.click,

@@ -15,6 +15,7 @@ class AuthLayaut extends StatelessWidget {
 
     return Scaffold(
       body: Scrollbar(
+        
         child: ListView(
           physics: const ClampingScrollPhysics(),
           children: [
@@ -51,7 +52,7 @@ class _MobileBody extends StatelessWidget {
            Container(
             width: double.infinity,
             height: 400,
-            child: CustomBackground(),
+            child: const CustomBackground(),
            ),
         ],
       )

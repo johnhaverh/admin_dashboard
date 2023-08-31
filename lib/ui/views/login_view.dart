@@ -6,7 +6,8 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Center(
+      color: Colors.red,
+      child: const Center(
         child: Text('Login View'),
       ),
     );

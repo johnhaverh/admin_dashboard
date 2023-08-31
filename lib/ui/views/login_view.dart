@@ -1,5 +1,6 @@
-import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:flutter/material.dart';
+import 'package:admin_dashboard/ui/buttons/custom_outline_button.dart';
+import 'package:admin_dashboard/ui/buttons/link_text.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -29,7 +30,9 @@ class LoginView extends StatelessWidget {
                   decoration: buildInputDecaration(hint: '********', label: 'Contraseña', icon: Icons.lock_outline_rounded),
                 ),
                 const SizedBox(height: 20,),
+                CustomOutlineBUtton(onPressed: (){}, text: 'Ingrear',isFilled: true,),
                 LinkText(text: 'Nueva cuenta', onPressed: () {},),
+
 
               ],
             )

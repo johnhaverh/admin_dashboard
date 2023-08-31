@@ -33,7 +33,7 @@ class _MobileBody extends StatelessWidget {
 
   final Widget child;
 
-  const _MobileBody({super.key, required this.child});
+  const _MobileBody({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +44,8 @@ class _MobileBody extends StatelessWidget {
         children: [
            const SizedBox(height: 20,),
            const CustomTitle(), 
-           Container(
-            width: double.infinity,
-            height: 420,
-            child: child,
-           ),
-           Container(
-            width: double.infinity,
-            height: 400,
-            child: const CustomBackground(),
-           ),
+           Container( width: double.infinity, height: 420, child: child, ),
+           Container( width: double.infinity, height: 400, child: const CustomBackground(), ),
         ],
       )
     );
@@ -64,7 +56,7 @@ class _DesktopBody extends StatelessWidget {
 
   final Widget child;
 
-  const _DesktopBody({super.key, required this.child});
+  const _DesktopBody({required this.child});
 
   @override
   Widget build(BuildContext context) {

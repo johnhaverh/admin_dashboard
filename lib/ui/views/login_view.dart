@@ -35,8 +35,6 @@ class LoginView extends StatelessWidget {
                 const SizedBox(height: 20,),
                 CustomOutlineBUtton(onPressed: (){}, text: 'Ingrear',isFilled: true,),
                 LinkText(text: 'Nueva cuenta', onPressed: () {Navigator.pushNamed(context, Flurorouter.registerRoute);})
-
-
               ],
             )
           )

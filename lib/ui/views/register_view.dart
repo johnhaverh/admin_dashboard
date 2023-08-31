@@ -41,8 +41,6 @@ class RegisterView extends StatelessWidget {
                 const SizedBox(height: 20,),
                 CustomOutlineBUtton(onPressed: (){}, text: 'Crear cuenta',isFilled: true,),
                 LinkText(text: 'Ir al login', onPressed: () {Navigator.pushNamed(context, Flurorouter.loginRoute);})
-
-
               ],
             )
           )

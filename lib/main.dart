@@ -1,4 +1,5 @@
 
+import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,9 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => AuthProvider())
+        ChangeNotifierProvider(
+          lazy: false,
+          create: ( _ ) => AuthProvider())
       ],
       child: MyApp(), 
     );
@@ -43,8 +46,13 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
       builder: ( _, child ){
-
-        return AuthLayaut(child: child!);
+        final authProvider = Provider.of<AuthProvider>(context);
+        if (authProvider.authStatus == AuthStatus.checking){ return Center(child: Text('checking'));  }
+        if (authProvider.authStatus == AuthStatus.authenticated){ 
+          return DashboardLayout(child: child!);
+        } else {
+          return AuthLayaut(child: child!);
+        }
       },
       theme: ThemeData.light().copyWith(
         scrollbarTheme: const ScrollbarThemeData().copyWith(

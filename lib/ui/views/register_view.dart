@@ -53,7 +53,7 @@ class RegisterView extends StatelessWidget {
                       const SizedBox(height: 20,),
                       TextFormField(
                         validator: (value){
-                          if (value == null || value!.isEmpty ) return 'Ingrese su contraseña';
+                          if (value == null || value.isEmpty ) return 'Ingrese su contraseña';
                           if (value.length < 8 ) return 'Su contraseña debe tener minimo 8 caracteres';
                           return null;
                         },

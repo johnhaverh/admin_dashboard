@@ -56,7 +56,12 @@ class LoginView extends StatelessWidget {
                       decoration: CustomInputs.loginInputDecaration(hint: '********', label: 'Contraseña', icon: Icons.lock_outline_rounded),
                     ),
                     const SizedBox(height: 20,),
-                    CustomOutlineBUtton(onPressed: (){ loginFormProvider.validateForm();}, text: 'Ingrear',isFilled: true,),
+                    CustomOutlineBUtton(
+                      onPressed: (){ 
+                        final isValid = loginFormProvider.validateForm();
+                        if (isValid)
+                          authProvider.login(loginFormProvider.email, loginFormProvider.password);
+                      }, text: 'Ingrear',isFilled: true,),
                     LinkText(text: 'Nueva cuenta', onPressed: () {Navigator.pushNamed(context, Flurorouter.registerRoute);})
                   ],
                 )

@@ -45,7 +45,7 @@ class _MobileBody extends StatelessWidget {
            const SizedBox(height: 20,),
            const CustomTitle(), 
            Container( width: double.infinity, height: 420, child: child, ),
-           Container( width: double.infinity, height: 400, child: const CustomBackground(), ),
+           Container( width: double.infinity, height: 400, child: const CustomBackground(),),
         ],
       )
     );
@@ -69,7 +69,7 @@ class _DesktopBody extends StatelessWidget {
       child: Row(
         children: [
           //backgroud
-          const CustomBackground(),
+          const Expanded(child: CustomBackground(), ),
           //view container
           Container(
             width: 600,

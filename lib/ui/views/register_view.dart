@@ -32,7 +32,7 @@ class RegisterView extends StatelessWidget {
                     children: [
                       TextFormField(
                         validator: (value){
-                          if (value != null || value!.isEmpty ) return 'Ingrese su nombre';
+                          if (value == null || value.isEmpty ) return 'Ingrese su nombre';
                           if (value.length < 3 ) return 'El nombre debe tener minimo 3 caracteres';
                           return null;
                         },
@@ -53,7 +53,7 @@ class RegisterView extends StatelessWidget {
                       const SizedBox(height: 20,),
                       TextFormField(
                         validator: (value){
-                          if (value != null || value!.isEmpty ) return 'Ingrese su contraseña';
+                          if (value == null || value!.isEmpty ) return 'Ingrese su contraseña';
                           if (value.length < 8 ) return 'Su contraseña debe tener minimo 8 caracteres';
                           return null;
                         },

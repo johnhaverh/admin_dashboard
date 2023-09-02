@@ -1,5 +1,6 @@
 
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
+import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +48,9 @@ class MyApp extends StatelessWidget {
       navigatorKey: NavigationService.navigatorKey,
       builder: ( _, child ){
         final authProvider = Provider.of<AuthProvider>(context);
-        if (authProvider.authStatus == AuthStatus.checking){ return Center(child: Text('checking'));  }
+        if (authProvider.authStatus == AuthStatus.checking){ 
+          return SplashLayout();
+          }
         if (authProvider.authStatus == AuthStatus.authenticated){ 
           return DashboardLayout(child: child!);
         } else {

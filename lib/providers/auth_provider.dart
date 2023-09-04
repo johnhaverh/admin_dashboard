@@ -26,7 +26,7 @@ class AuthProvider extends ChangeNotifier{
     notifyListeners();
 
     //isAuthenticated();
-    NavigationService.replaceTo(Flurorouter.dashboarddRoute);
+    NavigationService.replaceTo(Flurorouter.dashboardRoute);
   }
 
   Future<bool> isAuthenticated() async {

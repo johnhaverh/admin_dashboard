@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/side_menu_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
@@ -23,7 +24,7 @@ class Sidebar extends StatelessWidget {
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
             isActive: false,
-            onPressed: () {}
+            onPressed: () => SideMenuProvider.closeMenu()
           ),
 
           MenuItem( text: 'Orders', icon: Icons.shopping_cart_outlined, isActive: false, onPressed: () {}),

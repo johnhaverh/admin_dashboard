@@ -7,7 +7,7 @@ class NavbarAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-        child: Image.network('https://www.digtalent.id/wp-content/uploads/2023/04/people.jpg'),
+        child: Image.network('https://upload.wikimedia.org/wikipedia/commons/9/9e/Placeholder_Person.jpg'),
         width: 30,
         height: 30,
       ),

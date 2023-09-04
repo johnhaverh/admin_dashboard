@@ -16,4 +16,19 @@ class CustomInputs{
       labelStyle: const TextStyle(color: Colors.grey),
     );
   } 
+
+    static InputDecoration searchInputDecaration({
+    required String hint,  
+    required IconData icon,}){
+
+    return InputDecoration(
+      border: InputBorder.none,
+      enabledBorder: InputBorder.none,
+      hintText: hint,
+      //labelText: label,
+      prefixIcon: Icon(icon, color: Colors.grey),
+      hintStyle: const TextStyle(color: Colors.grey),
+      labelStyle: const TextStyle(color: Colors.grey),
+    );
+  } 
 }

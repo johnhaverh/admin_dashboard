@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:admin_dashboard/ui/shared/widgets/navbar_avatar.dart';
+import 'package:admin_dashboard/ui/shared/widgets/notifications_indicator.dart';
 import 'package:admin_dashboard/ui/shared/widgets/search_text.dart';
 
 class Navbar extends StatelessWidget {
@@ -16,13 +18,16 @@ class Navbar extends StatelessWidget {
           IconButton(
             onPressed: (){}, 
             icon: const Icon(Icons.menu_outlined)),
-            const SizedBox(width: 5,),
-
-            //SearchInput
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 250),
-              child: SearchText(),
-              ),
+          const SizedBox(width: 5,),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 250),
+            child: const SearchText(),
+          ),
+          const Spacer(),
+          const NotificationsIndicator(),
+          const SizedBox(width: 10,),
+          const NavbarAvatar(),
+          const SizedBox(width: 10,),
 
         ],
       ),

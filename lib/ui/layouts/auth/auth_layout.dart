@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_background.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';

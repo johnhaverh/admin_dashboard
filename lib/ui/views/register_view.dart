@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:admin_dashboard/providers/register_form_provider.dart';
-import 'package:email_validator/email_validator.dart';
+
+import 'package:admin_dashboard/router/router.dart';
 
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
-import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outline_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 
+import 'package:email_validator/email_validator.dart';
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
 

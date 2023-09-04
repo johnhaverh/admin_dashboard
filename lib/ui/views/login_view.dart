@@ -1,11 +1,14 @@
-import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/login_form_provider.dart';
+
+import 'package:admin_dashboard/router/router.dart';
+
 import 'package:email_validator/email_validator.dart';
 
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
-import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outline_button.dart';
 import 'package:admin_dashboard/ui/buttons/link_text.dart';
 
@@ -59,8 +62,9 @@ class LoginView extends StatelessWidget {
                     CustomOutlineBUtton(
                       onPressed: (){ 
                         final isValid = loginFormProvider.validateForm();
-                        if (isValid)
+                        if (isValid) {
                           authProvider.login(loginFormProvider.email, loginFormProvider.password);
+                        }
                       }, text: 'Ingrear',isFilled: true,),
                     LinkText(text: 'Nueva cuenta', onPressed: () {Navigator.pushNamed(context, Flurorouter.registerRoute);})
                   ],

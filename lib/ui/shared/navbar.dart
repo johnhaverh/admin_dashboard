@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
-import 'package:admin_dashboard/providers/auth_provider.dart';
+//import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/side_menu_provider.dart';
 
 import 'package:admin_dashboard/ui/shared/widgets/navbar_avatar.dart';
@@ -15,7 +15,7 @@ class Navbar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final size = MediaQuery.of(context).size;
-    final authProvider = Provider.of<AuthProvider>(context);
+    //final authProvider = Provider.of<AuthProvider>(context);
 
     return Container(
       width: double.infinity,
@@ -37,7 +37,7 @@ class Navbar extends StatelessWidget {
               child: const SearchText(),
             ),
           const Spacer(),
-          Text(authProvider.user!.nombre),
+          //Text(authProvider.user!.nombre),
           const NotificationsIndicator(),
           const SizedBox(width: 10,),
           const NavbarAvatar(),

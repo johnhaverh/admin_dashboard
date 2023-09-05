@@ -1,5 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,7 @@ class Sidebar extends StatelessWidget {
           
           const SizedBox(height: 50,),
           const TextSeparator(text: 'Exit'),
-          MenuItem( text: 'Logout', icon: Icons.exit_to_app_outlined, isActive: false, onPressed: () {}),
+          MenuItem( text: 'Logout', icon: Icons.exit_to_app_outlined, isActive: false, onPressed: () {Provider.of<AuthProvider>(context, listen: false).logout();}),
 
         ],
       ),

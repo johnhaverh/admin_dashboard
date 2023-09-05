@@ -76,6 +76,12 @@ class AuthProvider extends ChangeNotifier{
     });
   }
 
+  logout(){
+    LocalStorage.prefs.remove('token');
+    authStatus = AuthStatus.noAuthenticated;
+    notifyListeners();
+  }
+
   Future<bool> isAuthenticated() async {
     final token = LocalStorage.prefs.getString('token');
 
@@ -88,6 +94,8 @@ class AuthProvider extends ChangeNotifier{
     try{
       final resp = await CafeApi.httpGet('/auth');
       final authResponse = AuthResponse.fromMap(resp);
+      // para mantener conectado por 2 semanas 
+      //LocalStorage.prefs.setString('token', authResponse.token);
 
       user=authResponse.usuario;
       authStatus = AuthStatus.authenticated;
@@ -99,7 +107,5 @@ class AuthProvider extends ChangeNotifier{
       notifyListeners();
       return false;
     }
-    
-
   }
 }

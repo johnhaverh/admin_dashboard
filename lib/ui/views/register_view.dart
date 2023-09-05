@@ -37,6 +37,7 @@ class RegisterView extends StatelessWidget {
                   child: Column(
                     children: [
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(registerFormProvider,authProvider),
                         validator: (value){
                           if (value == null || value.isEmpty ) return 'Ingrese su nombre';
                           if (value.length < 3 ) return 'El nombre debe tener minimo 3 caracteres';
@@ -48,6 +49,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       const SizedBox(height: 20,),
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(registerFormProvider,authProvider),
                         validator: (value) {
                           if (!EmailValidator.validate(value ?? '')) return 'Email no valido';
                               return null;
@@ -58,6 +60,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       const SizedBox(height: 20,),
                       TextFormField(
+                        onFieldSubmitted: ( _ ) => onFormSubmit(registerFormProvider,authProvider),
                         validator: (value){
                           if (value == null || value.isEmpty ) return 'Ingrese su contraseña';
                           if (value.length < 8 ) return 'Su contraseña debe tener minimo 8 caracteres';
@@ -70,11 +73,7 @@ class RegisterView extends StatelessWidget {
                       ),
                       const SizedBox(height: 20,),
                       CustomOutlineButton(
-                        onPressed: (){
-                          final validForm = registerFormProvider.validateForm();
-                          if (!validForm) return;
-                          authProvider.register(registerFormProvider.email, registerFormProvider.password, registerFormProvider.name);
-                        }, text: 'Crear cuenta', isFilled: true,),
+                        onPressed: () => onFormSubmit(registerFormProvider, authProvider), text: 'Crear cuenta', isFilled: true,),
                       LinkText(text: 'Ir al login', onPressed: () {Navigator.pushNamed(context, Flurorouter.loginRoute);})
                     ],
                   )
@@ -87,4 +86,9 @@ class RegisterView extends StatelessWidget {
     );
   }
     
+  void onFormSubmit(RegisterFormProvider registerFormProvider, AuthProvider authProvider){
+    final validForm = registerFormProvider.validateForm();
+    if (!validForm) return;
+    authProvider.register(registerFormProvider.email, registerFormProvider.password, registerFormProvider.name);
+  }
 }

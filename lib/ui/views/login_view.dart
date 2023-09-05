@@ -37,6 +37,7 @@ class LoginView extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
+                      onFieldSubmitted: ( _ ) => onFormSubmit(loginFormProvider,authProvider),
                       validator: (value) {
                         if (!EmailValidator.validate(value ?? '')) return 'Email no valido';
                         
@@ -48,6 +49,7 @@ class LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: 20,),
                     TextFormField(
+                      onFieldSubmitted: ( _ ) => onFormSubmit(loginFormProvider,authProvider),
                       validator: (value){
                         if (value == null || value.isEmpty ) return 'Ingrese su contraseña';
                         if (value.length < 8 ) return 'Su contraseña debe tener minimo 8 caracteres';
@@ -60,12 +62,7 @@ class LoginView extends StatelessWidget {
                     ),
                     const SizedBox(height: 20,),
                     CustomOutlineButton(
-                      onPressed: (){ 
-                        final isValid = loginFormProvider.validateForm();
-                        if (!isValid) return;
-                          authProvider.login(loginFormProvider.email, loginFormProvider.password);
-
-                      }, text: 'Ingrear',isFilled: true,),
+                      onPressed: () => onFormSubmit(loginFormProvider, authProvider), text: 'Ingrear',isFilled: true,),
                     LinkText(text: 'Nueva cuenta', onPressed: () {Navigator.pushNamed(context, Flurorouter.registerRoute);})
                   ],
                 )
@@ -77,4 +74,10 @@ class LoginView extends StatelessWidget {
       )  
     );
   }    
+
+  void onFormSubmit(LoginFormProvider loginFormProvider, AuthProvider authProvider){
+    final isValid = loginFormProvider.validateForm();
+    if (!isValid) return;
+    authProvider.login(loginFormProvider.email, loginFormProvider.password);
+  }
 }

@@ -25,13 +25,28 @@ class AuthProvider extends ChangeNotifier{
   }
 
   login(String email, String password){
-    _token = 'adsf92837rbj23kjhdasdf09124bkdfasd0';
-    LocalStorage.prefs.setString('token',_token!);
-    authStatus = AuthStatus.authenticated;
-    notifyListeners();
 
-    //isAuthenticated();
-    NavigationService.replaceTo(Flurorouter.dashboardRoute);
+    final data = {
+      'correo': email,
+      'password': password
+    };
+
+
+    CafeApi.httpPost('/auth/login', data).then(
+      (json) {
+        //print(json);
+        final authResponse = AuthResponse.fromMap(json);
+        user=authResponse.usuario;
+
+        authStatus = AuthStatus.authenticated;
+        LocalStorage.prefs.setString('token', authResponse.token);
+        NavigationService.replaceTo(Flurorouter.dashboardRoute);
+        notifyListeners();
+      }
+      ).catchError((e){
+        //print('error en: $e');
+        NotificationsService.showSnackbarError('Usuario / password no validos - error en: $e');
+    });
   }
 
   register(String email, String password, String name){

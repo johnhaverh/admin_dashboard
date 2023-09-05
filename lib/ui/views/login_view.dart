@@ -62,9 +62,13 @@ class LoginView extends StatelessWidget {
                     CustomOutlineButton(
                       onPressed: (){ 
                         final isValid = loginFormProvider.validateForm();
-                        if (isValid) {
+                        //if (isValid) {
+                        //  authProvider.login(loginFormProvider.email, loginFormProvider.password);
+                        //}
+                        if (!isValid) return;
+                          final authProvider = Provider.of<AuthProvider>(context, listen: false);
                           authProvider.login(loginFormProvider.email, loginFormProvider.password);
-                        }
+
                       }, text: 'Ingrear',isFilled: true,),
                     LinkText(text: 'Nueva cuenta', onPressed: () {Navigator.pushNamed(context, Flurorouter.registerRoute);})
                   ],

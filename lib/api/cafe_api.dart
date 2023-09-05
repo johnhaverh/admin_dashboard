@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:dio/dio.dart';
 

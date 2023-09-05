@@ -7,6 +7,7 @@ import 'package:admin_dashboard/router/router.dart';
 
 import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 
 enum AuthStatus {
   checking,
@@ -54,6 +55,7 @@ class AuthProvider extends ChangeNotifier{
       }
       ).catchError((e){
         //print('error en: $e');
+        NotificationsService.showSnackbarError('Usuario ya existe - error en: $e');
     });
   }
 

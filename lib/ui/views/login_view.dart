@@ -59,7 +59,7 @@ class LoginView extends StatelessWidget {
                       decoration: CustomInputs.loginInputDecaration(hint: '********', label: 'Contraseña', icon: Icons.lock_outline_rounded),
                     ),
                     const SizedBox(height: 20,),
-                    CustomOutlineBUtton(
+                    CustomOutlineButton(
                       onPressed: (){ 
                         final isValid = loginFormProvider.validateForm();
                         if (isValid) {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CustomOutlineBUtton extends StatelessWidget {
+class CustomOutlineButton extends StatelessWidget {
   
   final Function onPressed;
   final String text;
   final Color color;
   final bool isFilled;
   
-  const CustomOutlineBUtton({super.key, required this.onPressed, required this.text, this.color = Colors.blue, this.isFilled = false});
+  const CustomOutlineButton({super.key, required this.onPressed, required this.text, this.color = Colors.blue, this.isFilled = false});
 
   @override
   Widget build(BuildContext context) {

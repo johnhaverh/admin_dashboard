@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_if_null_operators
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

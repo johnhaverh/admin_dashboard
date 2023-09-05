@@ -1,3 +1,4 @@
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -65,7 +66,13 @@ class RegisterView extends StatelessWidget {
                         decoration: CustomInputs.loginInputDecaration(hint: '********', label: 'Contraseña', icon: Icons.lock_outline_rounded),
                       ),
                       const SizedBox(height: 20,),
-                      CustomOutlineBUtton(onPressed: (){}, text: 'Crear cuenta',isFilled: true,),
+                      CustomOutlineButton(
+                        onPressed: (){
+                          final validForm = registerFormProvider.validateForm();
+                          if (!validForm) return;
+                          final authProvider = Provider.of<AuthProvider>(context, listen: false);
+                          authProvider.register(registerFormProvider.email, registerFormProvider.password, registerFormProvider.name);
+                        }, text: 'Crear cuenta', isFilled: true,),
                       LinkText(text: 'Ir al login', onPressed: () {Navigator.pushNamed(context, Flurorouter.loginRoute);})
                     ],
                   )

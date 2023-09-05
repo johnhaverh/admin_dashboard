@@ -16,7 +16,7 @@ enum AuthStatus {
 }
 
 class AuthProvider extends ChangeNotifier{
-  String? _token;
+  //String? _token;
   AuthStatus authStatus = AuthStatus.checking;
   Usuario? user;
 
@@ -41,6 +41,7 @@ class AuthProvider extends ChangeNotifier{
         authStatus = AuthStatus.authenticated;
         LocalStorage.prefs.setString('token', authResponse.token);
         NavigationService.replaceTo(Flurorouter.dashboardRoute);
+        CafeApi.configureDio();
         notifyListeners();
       }
       ).catchError((e){
@@ -66,6 +67,7 @@ class AuthProvider extends ChangeNotifier{
         authStatus = AuthStatus.authenticated;
         LocalStorage.prefs.setString('token', authResponse.token);
         NavigationService.replaceTo(Flurorouter.dashboardRoute);
+        CafeApi.configureDio();
         notifyListeners();
       }
       ).catchError((e){
@@ -82,10 +84,22 @@ class AuthProvider extends ChangeNotifier{
       notifyListeners(); 
       return false;
     }
-    await Future.delayed(const Duration(milliseconds: 1000));
 
-    authStatus = AuthStatus.authenticated;
-    notifyListeners();
-    return true;
+    try{
+      final resp = await CafeApi.httpGet('/auth');
+      final authResponse = AuthResponse.fromMap(resp);
+
+      user=authResponse.usuario;
+      authStatus = AuthStatus.authenticated;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      //print(e);
+      authStatus = AuthStatus.noAuthenticated;
+      notifyListeners();
+      return false;
+    }
+    
+
   }
 }

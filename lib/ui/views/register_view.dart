@@ -16,6 +16,9 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    
     return ChangeNotifierProvider(
       create: ( _ ) => RegisterFormProvider(),
       child: Builder(
@@ -70,7 +73,6 @@ class RegisterView extends StatelessWidget {
                         onPressed: (){
                           final validForm = registerFormProvider.validateForm();
                           if (!validForm) return;
-                          final authProvider = Provider.of<AuthProvider>(context, listen: false);
                           authProvider.register(registerFormProvider.email, registerFormProvider.password, registerFormProvider.name);
                         }, text: 'Crear cuenta', isFilled: true,),
                       LinkText(text: 'Ir al login', onPressed: () {Navigator.pushNamed(context, Flurorouter.loginRoute);})

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:admin_dashboard/ui/modals/categories_modal.dart';
 import 'package:admin_dashboard/models/category.dart';
 
 class CategoriesDTS extends DataTableSource{
@@ -22,18 +23,24 @@ class CategoriesDTS extends DataTableSource{
         DataCell(Row(
           children: [
             IconButton(
-              icon: Icon (Icons.edit_outlined), 
-              onPressed: (){},
+              icon: const Icon (Icons.edit_outlined), 
+              onPressed: (){
+                showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  context: context, 
+                  builder: ( _ ) => CategoriesModal(categoria: categoria)
+                );
+              },
             ),
             IconButton(
               icon: Icon (Icons.delete_outline,color: Colors.red.withOpacity(0.8),), 
               onPressed: (){
                 final dialog = AlertDialog(
-                  title: Text('Borrar registro'),
+                  title: const Text('Borrar registro'),
                   content: Text('¿Borrar definitivamente ${categoria.nombre}?'),
                   actions:[
-                    TextButton( onPressed: (){Navigator.of(context).pop();}, child: Text('No') ),               
-                    TextButton( onPressed: (){Navigator.of(context).pop();}, child: Text('Si') )
+                    TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('No') ),               
+                    TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('Si') )
                   ]
                 );
                 showDialog(context: context, builder: ( _ ) => dialog);

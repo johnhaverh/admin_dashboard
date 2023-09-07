@@ -19,7 +19,6 @@ class CafeApi{
       final resp = await _dio.get(path);
       return resp.data;
     } catch (e) {
-      //print(e);
       throw('Error en el GET - Dio');
     }
   }
@@ -30,8 +29,17 @@ class CafeApi{
       final resp = await _dio.post(path, data: formData);
       return resp.data;
     } catch (e) {
-      //print(e);
       throw('Error en el POST - Dio');
+    }
+  }
+
+  static Future httpPut (String path, Map<String, dynamic> data) async {
+    final formData = FormData.fromMap(data);
+    try {
+      final resp = await _dio.put(path, data: formData);
+      return resp.data;
+    } catch (e) {
+      throw('Error en el PUT - Dio');
     }
 
   }

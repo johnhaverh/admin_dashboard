@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+import 'package:admin_dashboard/ui/modals/categories_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +49,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 DataColumn(label: Text('Acciones')),
               ],
               source: CategoriesDTS(categorias: categorias, context),
-              header: Text('Lista de Categorías',maxLines: 2,),
+              header: const Text('Lista de Categorías',maxLines: 2,),
               onRowsPerPageChanged: (value){
                 setState(() {
                   _rowPerPage = value ?? 10;
@@ -56,7 +57,14 @@ class _CategoriesViewState extends State<CategoriesView> {
               },
               rowsPerPage: _rowPerPage,
               actions: [
-                CustomIconButton(onPressed: (){}, text: 'Crear', icon: Icons.add_outlined)
+                CustomIconButton(
+                  onPressed: (){
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context, 
+                    builder: ( _ ) => const CategoriesModal(categoria: null)
+                  );
+                }, text: 'Crear', icon: Icons.add_outlined)
               ],
             ),
         ],

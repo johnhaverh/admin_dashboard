@@ -74,7 +74,7 @@ class RegisterView extends StatelessWidget {
                       const SizedBox(height: 20,),
                       CustomOutlineButton(
                         onPressed: () => onFormSubmit(registerFormProvider, authProvider), text: 'Crear cuenta', isFilled: true,),
-                      LinkText(text: 'Ir al login', onPressed: () {Navigator.pushNamed(context, Flurorouter.loginRoute);})
+                      LinkText(text: 'Ir al login', onPressed: () {Navigator.pushReplacementNamed(context, Flurorouter.loginRoute);})
                     ],
                   )
                 )

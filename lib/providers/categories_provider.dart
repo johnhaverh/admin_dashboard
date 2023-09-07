@@ -32,19 +32,6 @@ class CategoriesProvider extends ChangeNotifier{
     }
   }
 
-  Future deleteCategory(String id, String name) async {
-    final data = {
-      'nombre': name
-    };
-    try {
-      final json = await CafeApi.httpPost('/categorias/$id',data);
-      final deleteCategory = Categoria.fromMap(json);
-      categories.remove(deleteCategory);
-      notifyListeners();
-    }catch (e){
-      NotificationsService.showSnackbarError('Error delete categoría - error : $e');
-    }
-  }
 
   Future updateCategory(String id, String name) async {
     final data = {
@@ -67,4 +54,15 @@ class CategoriesProvider extends ChangeNotifier{
     }
   }
 
+  Future deleteCategory(String id) async {
+
+    try {
+      await CafeApi.httpDelete('/categorias/$id',{});
+      
+      categories.removeWhere((category) => category.id == id);
+      notifyListeners();
+    }catch (e){
+      NotificationsService.showSnackbarError('Error delete categoría - error : $e');
+    }
+  }
 }

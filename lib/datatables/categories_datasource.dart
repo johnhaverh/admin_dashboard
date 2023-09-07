@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:admin_dashboard/providers/categories_provider.dart';
+
 import 'package:admin_dashboard/ui/modals/categories_modal.dart';
 import 'package:admin_dashboard/models/category.dart';
 
@@ -40,7 +44,11 @@ class CategoriesDTS extends DataTableSource{
                   content: Text('¿Borrar definitivamente ${categoria.nombre}?'),
                   actions:[
                     TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('No') ),               
-                    TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('Si') )
+                    TextButton( 
+                      onPressed: () async {
+                        await Provider.of<CategoriesProvider>(context,listen: false).deleteCategory(categoria.id);
+                        Navigator.of(context).pop();
+                      }, child: const Text('Si') )
                   ]
                 );
                 showDialog(context: context, builder: ( _ ) => dialog);

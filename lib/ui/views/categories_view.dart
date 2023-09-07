@@ -20,7 +20,7 @@ class CategoriesView extends StatefulWidget {
 
 class _CategoriesViewState extends State<CategoriesView> {
 
-  int _rowPerPage = PaginatedDataTable.defaultRowsPerPage;
+  int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   @override
   void initState() {
@@ -52,10 +52,10 @@ class _CategoriesViewState extends State<CategoriesView> {
               header: const Text('Lista de Categorías',maxLines: 2,),
               onRowsPerPageChanged: (value){
                 setState(() {
-                  _rowPerPage = value ?? 10;
+                  _rowsPerPage = value ?? 10;
                 });
               },
-              rowsPerPage: _rowPerPage,
+              rowsPerPage: _rowsPerPage,
               actions: [
                 CustomIconButton(
                   onPressed: (){
@@ -66,7 +66,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                   );
                 }, text: 'Crear', icon: Icons.add_outlined)
               ],
-            ),
+          ),
         ],
       )
     );

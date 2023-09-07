@@ -8,17 +8,18 @@ class Flurorouter{
   static final FluroRouter router = FluroRouter();
 
   //root route
-  static String rootRoute = '/';
+  static String rootRoute       = '/';
 
   //Auth routes
-  static String loginRoute = '/auth/login';
-  static String registerRoute = '/auth/register';
+  static String loginRoute      = '/auth/login';
+  static String registerRoute   = '/auth/register';
 
   // Dashboard
-  static String dashboardRoute = '/dashboard';
-  static String iconsRoute = '/dashboard/icons';
-  static String blankRoute = '/dashboard/blank';
+  static String dashboardRoute  = '/dashboard';
+  static String iconsRoute      = '/dashboard/icons';
+  static String blankRoute      = '/dashboard/blank';
   static String categoriesRoute = '/dashboard/categories';
+  static String usersRoute      = '/dashboard/users';
 
   //
   static void configureRoutes(){
@@ -32,6 +33,9 @@ class Flurorouter{
     router.define(iconsRoute, handler: DashboardHandlers.icons, transitionType: TransitionType.fadeIn);
     router.define(blankRoute, handler: DashboardHandlers.blank, transitionType: TransitionType.fadeIn);
     router.define(categoriesRoute, handler: DashboardHandlers.categories, transitionType: TransitionType.fadeIn);
+
+    //Users
+    router.define(usersRoute, handler: DashboardHandlers.users, transitionType: TransitionType.fadeIn);
 
     //404
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;

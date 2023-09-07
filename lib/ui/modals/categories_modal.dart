@@ -66,14 +66,20 @@ class _CategoriesModalState extends State<CategoriesModal> {
             alignment: Alignment.center,
             child: CustomOutlineButton(
               onPressed: () async {
-                if (id == null ){
+
+                try {
+                  if (id == null ){
                     await categoryProvider.newCategory(nombre);
-                    NotificationsService.showSnackbarError('Categoría agregada correctamente');
-                } else {
-                    await categoryProvider.updateCategory(id!, nombre);
-                    NotificationsService.showSnackbarError('Categoría agregada correctamente');
-                }
-                Navigator.of(context).pop();
+                    NotificationsService.showSnackbarMessage('Categoría < $nombre > agregada correctamente');
+                  } else {
+                      await categoryProvider.updateCategory(id!, nombre);
+                      NotificationsService.showSnackbarMessage('Categoría < $nombre > modificada correctamente');
+                  }
+                  Navigator.of(context).pop();
+                } catch (e) {
+                  Navigator.of(context).pop();
+                  NotificationsService.showSnackbarError('Categoría no se pudo guardar');
+                } 
               }, 
               text: 'Guardar',
               color:Colors.blue,

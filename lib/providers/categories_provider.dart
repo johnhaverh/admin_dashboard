@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
+//import 'package:admin_dashboard/services/notifications_service.dart';
 
 import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/models/category.dart';
@@ -28,7 +28,8 @@ class CategoriesProvider extends ChangeNotifier{
       categories.add(newCategory);
       notifyListeners();
     }catch (e){
-      NotificationsService.showSnackbarError('Error alta categoría - error : $e');
+      throw('Error alta categoría - error : $e');
+      //NotificationsService.showSnackbarError('Error alta categoría - error : $e');
     }
   }
 
@@ -39,8 +40,6 @@ class CategoriesProvider extends ChangeNotifier{
     };
     try {
       await CafeApi.httpPut('/categorias/$id',data);
-      //final updateCategory = Categoria.fromMap(json);
-      //categories.add(updateCategory);
       categories = categories.map(
         (category) {
           if (category.id != id) return category;
@@ -50,7 +49,8 @@ class CategoriesProvider extends ChangeNotifier{
       ).toList();
       notifyListeners();
     }catch (e){
-      NotificationsService.showSnackbarError('Error update categoría - error : $e');
+      throw('Error update categoría - error : $e');
+      //NotificationsService.showSnackbarError('Error update categoría - error : $e');
     }
   }
 
@@ -62,7 +62,8 @@ class CategoriesProvider extends ChangeNotifier{
       categories.removeWhere((category) => category.id == id);
       notifyListeners();
     }catch (e){
-      NotificationsService.showSnackbarError('Error delete categoría - error : $e');
+      throw('Error borrado categoría - error : $e');
+      //NotificationsService.showSnackbarError('Error delete categoría - error : $e');
     }
   }
 }

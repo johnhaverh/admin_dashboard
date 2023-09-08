@@ -33,24 +33,24 @@ class UsersDTS extends DataTableSource {
                 // );
               },
             ),
-            IconButton(
-              icon: Icon (Icons.delete_outline,color: Colors.red.withOpacity(0.8),), 
-              onPressed: (){
-                // final dialog = AlertDialog(
-                //   title: const Text('Borrar registro'),
-                //   content: Text('¿Borrar definitivamente ${categoria.nombre}?'),
-                //   actions:[
-                //     TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('No') ),               
-                //     TextButton( 
-                //       onPressed: () async {
-                //         await Provider.of<CategoriesProvider>(context,listen: false).deleteCategory(categoria.id);
-                //         Navigator.of(context).pop();
-                //       }, child: const Text('Si') )
-                //   ]
-                // );
-                // showDialog(context: context, builder: ( _ ) => dialog);
-              },
-            ),
+            // IconButton(
+            //   icon: Icon (Icons.delete_outline,color: Colors.red.withOpacity(0.8),), 
+            //   onPressed: (){
+            //     // final dialog = AlertDialog(
+            //     //   title: const Text('Borrar registro'),
+            //     //   content: Text('¿Borrar definitivamente ${categoria.nombre}?'),
+            //     //   actions:[
+            //     //     TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('No') ),               
+            //     //     TextButton( 
+            //     //       onPressed: () async {
+            //     //         await Provider.of<CategoriesProvider>(context,listen: false).deleteCategory(categoria.id);
+            //     //         Navigator.of(context).pop();
+            //     //       }, child: const Text('Si') )
+            //     //   ]
+            //     // );
+            //     // showDialog(context: context, builder: ( _ ) => dialog);
+            //   },
+            // ),
           ],
         )),
       ]

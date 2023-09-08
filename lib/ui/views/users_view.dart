@@ -26,14 +26,23 @@ class UsersView extends StatelessWidget {
           Text('Users View', style: CustomLabels.h1,),
           const SizedBox(height: 10,),
           PaginatedDataTable(
-              columns: const [
-                DataColumn(label: Text('Avatar')),
-                DataColumn(label: Text('Nombre')),
-                DataColumn(label: Text('Email')),
-                DataColumn(label: Text('UID')),
-                DataColumn(label: Text('Acciones')),
+              sortAscending: usersProvider.ascending,
+              sortColumnIndex: usersProvider.sortColumnIndex,
+              columns: [
+                const DataColumn(label: Text('Avatar')),
+                DataColumn(label: const Text('Nombre'), onSort: ( colIndex, _ ) {
+                  usersProvider.sortColumnIndex = colIndex;
+                  usersProvider.sort<String>((user) => user.nombre);
+                }),
+                DataColumn(label: const Text('Email'), onSort: ( colIndex, _ ) {
+                  usersProvider.sortColumnIndex = colIndex;
+                  usersProvider.sort<String>((user) => user.nombre);
+                }),
+                const DataColumn(label: Text('UID')),
+                const DataColumn(label: Text('Acciones')),
               ],
-              source: usersDataSource
+              source: usersDataSource,
+              onPageChanged: ( page ) {},
               // ,
               // header: const Text('Lista de Categorías',maxLines: 2,),
               // onRowsPerPageChanged: (value){

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/models/usuario.dart';
 
@@ -28,6 +29,7 @@ class UsersDTS extends DataTableSource {
             IconButton(
               icon: const Icon (Icons.edit_outlined), 
               onPressed: (){
+                NavigationService.replaceTo('/dashboard/users/${user.uid}');
                 // showModalBottomSheet(
                 //   backgroundColor: Colors.transparent,
                 //   context: context, 

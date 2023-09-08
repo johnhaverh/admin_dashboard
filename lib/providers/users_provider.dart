@@ -20,9 +20,7 @@ class UsersProvider extends ChangeNotifier{
   getPaginatedUsers() async {
     final resp = await CafeApi.httpGet('/usuarios?limite=100&desde=0');
     final usersResp = UsersResponse.fromMap(resp);
-
     isLoading = false;
-
     users = [...usersResp.usuarios];    
     notifyListeners();
   }
@@ -39,13 +37,17 @@ class UsersProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  // getUsers() async {
-  //   final resp = await CafeApi.httpGet('/usuarios');
-  //   final usersResp = UsersResponse.fromMap(resp);
 
-  //   users = [...usersResp.usuarios];    
-  //   notifyListeners();
-  // }
+  Future<Usuario> getUserById( String uid) async {
+
+    try {
+      final resp = await CafeApi.httpGet('/usuarios/$uid');
+      final user = Usuario.fromMap(resp); 
+      return user;
+    } catch (e) {
+      throw e;
+    }
+  }
 
   // Future newUser(String name) async {
   //   final data = {

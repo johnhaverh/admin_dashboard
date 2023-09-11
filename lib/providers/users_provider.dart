@@ -49,6 +49,20 @@ class UsersProvider extends ChangeNotifier{
     }
   }
 
+  void refreshUser(Usuario  newUser){
+
+    users = users.map(
+      (user){
+        if (user.uid == newUser.uid){
+          user=newUser;
+        }
+        return user;
+      }
+    ).toList();
+    
+    notifyListeners();
+  }
+
   // Future newUser(String name) async {
   //   final data = {
   //     'nombre': name

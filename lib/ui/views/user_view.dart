@@ -141,6 +141,7 @@ class _UserViewForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   final saved = await userFormProvider.updateUser();
+                  Provider.of<UsersProvider>(context, listen: false).refreshUser(user);
                   if (saved){
                     NotificationsService.showSnackbarMessage('Usuario actualizado');
                   } else {

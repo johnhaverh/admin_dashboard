@@ -38,8 +38,8 @@ class CafeApi{
     try {
       final resp = await _dio.put(path, data: formData);
       return resp.data;
-    } catch (e) {
-      throw('Error en el PUT - Dio');
+    } on DioException catch (e) {
+      throw('Error en el PUT - Dio $e');
     }
   }
 

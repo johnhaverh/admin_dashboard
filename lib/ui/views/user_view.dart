@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, unused_element, use_build_context_synchronously
 
+import 'package:admin_dashboard/ui/buttons/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:email_validator/email_validator.dart';
@@ -61,9 +62,22 @@ class _UserViewState extends State<UserView> {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Center(child: Text('User View', style: CustomLabels.h1,)),
-          Spacer(),
-          LinkText(text: 'Volver', color: Colors.blueAccent,onPressed: () {Navigator.pushReplacementNamed(context, Flurorouter.usersRoute);}),
+          Row(
+            children: [
+              Center(child: Text('User View', style: CustomLabels.h1,)),
+              Spacer(),
+              // LinkText(text: 'Volver', color: Colors.blueAccent,onPressed: () {Navigator.pushReplacementNamed(context, Flurorouter.usersRoute);}),
+
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 120),
+                child: CustomIconButton(
+                  text: 'Volver', icon: Icons.arrow_back,
+                  onPressed: (){
+                  Navigator.pushReplacementNamed(context, Flurorouter.usersRoute);},
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 10,),
           if (user == null) 
             WhiteCard(

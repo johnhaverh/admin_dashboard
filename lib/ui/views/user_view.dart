@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, unused_element
+// ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, unused_element, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -72,7 +72,7 @@ class _UserViewState extends State<UserView> {
               ),
             ),
           if (user != null)
-            UserViewBody(),
+            const UserViewBody(),
         ],
       )
     );
@@ -192,6 +192,11 @@ class _AvatarContainer extends StatelessWidget {
 
     final userFormProvider = Provider.of<UserFormProvider>(context);
     final user = userFormProvider.user!;
+    final image = ( user.img == null) 
+    ? const Image(image: AssetImage('no-image.jpg')) 
+    : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!);
+
+
     return WhiteCard(
       width: 250,
       child: Container(
@@ -208,9 +213,7 @@ class _AvatarContainer extends StatelessWidget {
               child: Stack(
                 children: [
                   ClipOval(
-                    child: Image(
-                      image: AssetImage('no-image.jpg')
-                    ),
+                    child: image,
                   ),
                   Positioned(
                     bottom: 5,
@@ -233,7 +236,10 @@ class _AvatarContainer extends StatelessWidget {
                           );
                           if (result != null){
                             PlatformFile file = result.files.first;
-                            final resp = await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
+                            NotificationsService.showBusyIndicator(context);
+                            final newUser = await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
+                            Provider.of<UsersProvider>(context, listen: false).refreshUser(newUser);
+                            Navigator.of(context).pop();
                           }
 
                         }

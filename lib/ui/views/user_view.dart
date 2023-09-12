@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, unused_element
 
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,14 +31,24 @@ class _UserViewState extends State<UserView> {
 
   @override
   void initState() {
+    super.initState();
     final usersProvider = Provider.of<UsersProvider>(context, listen: false);
     final userFormProvider = Provider.of<UserFormProvider>(context, listen: false);
     usersProvider.getUserById(widget.uid).then((userDB) {
-      userFormProvider.user = userDB;
-      setState((){user = userDB;});
+      if (userDB != null ) {
+        userFormProvider.user = userDB;
+        setState((){user = userDB;});
+      } else {
+        NavigationService.replaceTo(Flurorouter.usersRoute);
+      }
     });
+  }
 
-    super.initState();
+  @override
+  void dispose() {
+    super.dispose();
+    user = null;
+    Provider.of<UserFormProvider>(context, listen: false).user = null;
   }
 
   @override

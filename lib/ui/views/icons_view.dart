@@ -15,7 +15,7 @@ class IconsView extends StatelessWidget {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('Icons', style: CustomLabels.h1,),
+          Center(child:Text('Icons', style: CustomLabels.h1,)),
           const SizedBox(height: 10,),
           const Wrap(
             crossAxisAlignment: WrapCrossAlignment.start,

@@ -38,7 +38,7 @@ class _CategoriesViewState extends State<CategoriesView> {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('Categories View', style: CustomLabels.h1,),
+          Center(child:Text('Categories View', style: CustomLabels.h1,)),
           const SizedBox(height: 10,),
           //const WhiteCard(title: 'title',child: Text('Complement')),
           PaginatedDataTable(

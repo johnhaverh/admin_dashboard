@@ -21,7 +21,7 @@ class DashboardView extends StatelessWidget {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('Dashborad View', style: CustomLabels.h1,),
+          Center(child:Text('Dashborad View', style: CustomLabels.h1,)),
           const SizedBox(height: 10,),
           //const WhiteCard(title: 'Sales Statistics',child: Text('Hello World')),
           WhiteCard(title: authProvider.user!.nombre, child: Text(authProvider.user!.correo)),

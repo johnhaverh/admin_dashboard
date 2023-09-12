@@ -4,8 +4,9 @@ class LinkText extends StatefulWidget {
 
   final String text;
   final Function ?onPressed;
+  final Color? color;
 
-  const LinkText({super.key, required this.text, this.onPressed});
+  const LinkText({super.key, required this.text, this.onPressed, this.color = Colors.grey});
 
   @override
   State<LinkText> createState() => _LinkTextState();
@@ -33,7 +34,7 @@ class _LinkTextState extends State<LinkText> {
             widget.text,
             style:TextStyle(
               fontSize: 16,
-              color: Colors.grey[700],
+              color: widget.color,
               decoration: isHover ? TextDecoration.underline : TextDecoration.none,
             )
             )

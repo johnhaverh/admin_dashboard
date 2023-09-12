@@ -11,6 +11,8 @@ import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 
 import 'package:admin_dashboard/models/usuario.dart';
+
+import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
@@ -59,7 +61,9 @@ class _UserViewState extends State<UserView> {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('User View', style: CustomLabels.h1,),
+          Center(child: Text('User View', style: CustomLabels.h1,)),
+          Spacer(),
+          LinkText(text: 'Volver', color: Colors.blueAccent,onPressed: () {Navigator.pushReplacementNamed(context, Flurorouter.usersRoute);}),
           const SizedBox(height: 10,),
           if (user == null) 
             WhiteCard(

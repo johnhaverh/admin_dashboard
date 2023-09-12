@@ -23,7 +23,7 @@ class UsersView extends StatelessWidget {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('Users View', style: CustomLabels.h1,),
+          Center(child:Text('Users View', style: CustomLabels.h1,)),
           const SizedBox(height: 10,),
           PaginatedDataTable(
               sortAscending: usersProvider.ascending,

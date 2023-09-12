@@ -15,7 +15,7 @@ class ProductsView extends StatelessWidget {
       child: ListView(
         physics: const ClampingScrollPhysics(),
         children: [
-          Text('Products View', style: CustomLabels.h1,),
+          Center(child:Text('Products View', style: CustomLabels.h1,)),
           const SizedBox(height: 10,),
           const WhiteCard(title: 'title',child: Text('Complement')),
         ],

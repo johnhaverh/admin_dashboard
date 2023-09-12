@@ -5,12 +5,10 @@ import 'package:provider/provider.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:file_picker/file_picker.dart';
 
+import 'package:admin_dashboard/providers/providers.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
-
-import 'package:admin_dashboard/providers/user_form_provider.dart';
-import 'package:admin_dashboard/providers/users_provider.dart';
 
 import 'package:admin_dashboard/models/usuario.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
@@ -156,9 +154,11 @@ class _UserViewForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () async {
                   final saved = await userFormProvider.updateUser();
+                  Provider.of<AuthProvider>(context, listen: false).refreshUser(user);
                   Provider.of<UsersProvider>(context, listen: false).refreshUser(user);
                   if (saved){
-                    NotificationsService.showSnackbarMessage('Usuario actualizado');
+                    //NotificationsService.showSnackbarMessage('Usuario actualizado');
+                    NotificationsService.showMessage(context,'Usuario actualizado');
                   } else {
                     NotificationsService.showSnackbarError('No se pudo actualizar usuario');
                   }
@@ -239,6 +239,7 @@ class _AvatarContainer extends StatelessWidget {
                             NotificationsService.showBusyIndicator(context);
                             final newUser = await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
                             Provider.of<UsersProvider>(context, listen: false).refreshUser(newUser);
+                            Provider.of<AuthProvider>(context, listen: false).refreshUser(newUser);
                             Navigator.of(context).pop();
                           }
 

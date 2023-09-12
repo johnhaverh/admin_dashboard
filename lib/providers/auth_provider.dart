@@ -21,6 +21,29 @@ class AuthProvider extends ChangeNotifier{
   AuthStatus authStatus = AuthStatus.checking;
   Usuario? user;
 
+  copyUserWith({
+    String? rol,
+    bool? estado,
+    bool? google,
+    String? nombre,
+    String? correo,
+    String? uid,
+    String? img,
+    
+  }){
+    user = Usuario(
+      rol: rol ?? user!.rol,
+      estado: estado ?? user!.estado, 
+      google: google ?? user!.google, 
+      nombre: nombre ?? user!.nombre,
+      correo: correo ?? user!.correo, 
+      uid: uid ?? user!.uid,
+      img: img ?? user!.img,
+    );
+    notifyListeners();
+  }
+
+
   AuthProvider(){
     isAuthenticated();
   }
@@ -109,4 +132,12 @@ class AuthProvider extends ChangeNotifier{
       return false;
     }
   }
+
+  void refreshUser(Usuario  newUser){
+    if (user!.uid == newUser.uid){
+      user=newUser;
+    }
+    notifyListeners();
+  }
+
 }

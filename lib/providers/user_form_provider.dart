@@ -1,5 +1,10 @@
-import 'package:admin_dashboard/api/cafe_api.dart';
+// ignore_for_file: unused_local_variable
+
+
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
+
+import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/models/usuario.dart';
 
 class UserFormProvider extends ChangeNotifier{
@@ -51,6 +56,18 @@ class UserFormProvider extends ChangeNotifier{
     } catch (e) {
       return false;
     }
+  }
+
+  Future<Usuario> uploadImage( String path, Uint8List bytes) async {
+    try {
+      final resp = await CafeApi.uploadFile(path, bytes);
+      user = Usuario.fromMap(resp);
+      notifyListeners();
+      return user!;
+    } catch (e) {
+      throw 'Error en user form provider $e';
+    }
+
   }
 
 }

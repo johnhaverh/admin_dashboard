@@ -1,11 +1,13 @@
 // ignore_for_file: avoid_unnecessary_containers, sized_box_for_whitespace, unused_element
 
-import 'package:admin_dashboard/router/router.dart';
-import 'package:admin_dashboard/services/navigation_service.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:file_picker/file_picker.dart';
+
+import 'package:admin_dashboard/router/router.dart';
+import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/services/notifications_service.dart';
 
 import 'package:admin_dashboard/providers/user_form_provider.dart';
 import 'package:admin_dashboard/providers/users_provider.dart';
@@ -122,7 +124,7 @@ class _UserViewForm extends StatelessWidget {
           children: [
             TextFormField(
               initialValue: user.nombre,
-              decoration: CustomInputs.formInputDecaration(
+              decoration: CustomInputs.formInputDecoration(
                 hint: 'Nombre del usuario', 
                 label: 'Nombre', 
                 icon: Icons.supervised_user_circle_outlined
@@ -137,7 +139,7 @@ class _UserViewForm extends StatelessWidget {
             const SizedBox(height: 20,),
             TextFormField(
               initialValue: user.correo,
-              decoration: CustomInputs.formInputDecaration(
+              decoration: CustomInputs.formInputDecoration(
                 hint: 'Correo del usuario', 
                 label: 'Correo', 
                 icon: Icons.mark_email_read_outlined
@@ -224,7 +226,17 @@ class _AvatarContainer extends StatelessWidget {
                         backgroundColor: Colors.indigo,
                         elevation: 0,
                         child: const Icon (Icons.camera_alt_outlined, size: 20,),
-                        onPressed: (){}
+                        onPressed: () async {
+                          FilePickerResult? result = await FilePicker.platform.pickFiles(
+                            //allowedExtensions: ['jpg','jpeg','png'],
+                            //allowMultiple: false,
+                          );
+                          if (result != null){
+                            PlatformFile file = result.files.first;
+                            final resp = await userFormProvider.uploadImage('/uploads/usuarios/${user.uid}', file.bytes!);
+                          }
+
+                        }
                       )
                     ),
                   ),

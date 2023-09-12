@@ -50,7 +50,7 @@ class CustomInputs{
   } 
 
 
-static InputDecoration formInputDecaration({
+static InputDecoration formInputDecoration({
     required String hint, 
     required String label, 
     required IconData icon,}){

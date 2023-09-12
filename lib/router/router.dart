@@ -19,6 +19,7 @@ class Flurorouter{
   static String iconsRoute      = '/dashboard/icons';
   static String blankRoute      = '/dashboard/blank';
   static String categoriesRoute = '/dashboard/categories';
+  static String productsRoute   = '/dashboard/products';
   static String usersRoute      = '/dashboard/users';
   static String userRoute       = '/dashboard/users/:uid';
 
@@ -34,6 +35,7 @@ class Flurorouter{
     router.define(iconsRoute, handler: DashboardHandlers.icons, transitionType: TransitionType.fadeIn);
     router.define(blankRoute, handler: DashboardHandlers.blank, transitionType: TransitionType.fadeIn);
     router.define(categoriesRoute, handler: DashboardHandlers.categories, transitionType: TransitionType.fadeIn);
+    router.define(productsRoute, handler: DashboardHandlers.products, transitionType: TransitionType.fadeIn);
 
     //Users
     router.define(usersRoute, handler: DashboardHandlers.users, transitionType: TransitionType.fadeIn);

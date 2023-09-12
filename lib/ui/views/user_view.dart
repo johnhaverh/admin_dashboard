@@ -37,6 +37,7 @@ class _UserViewState extends State<UserView> {
     usersProvider.getUserById(widget.uid).then((userDB) {
       if (userDB != null ) {
         userFormProvider.user = userDB;
+        userFormProvider.formKey = GlobalKey<FormState>();
         setState((){user = userDB;});
       } else {
         NavigationService.replaceTo(Flurorouter.usersRoute);

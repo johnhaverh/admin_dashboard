@@ -249,9 +249,10 @@ class _AvatarContainer extends StatelessWidget {
                         child: const Icon (Icons.camera_alt_outlined, size: 20,),
                         onPressed: () async {
                           FilePickerResult? result = await FilePicker.platform.pickFiles(
-                            //allowedExtensions: ['jpg','jpeg','png'],
-                            //allowMultiple: false,
-                          );
+                                type: FileType.custom,
+                                allowedExtensions: ['jpg', 'jpeg', 'png'],
+                                allowMultiple: false,
+                          );   
                           if (result != null){
                             PlatformFile file = result.files.first;
                             NotificationsService.showBusyIndicator(context);

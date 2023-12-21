@@ -1,3 +1,5 @@
+import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
+import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_dashboard/providers/auth_provider.dart';
@@ -12,10 +14,10 @@ class AdminHandlers {
       
       final authProvider = Provider.of<AuthProvider>(context!);
       
-      if (authProvider.authStatus == AuthStatus.noAuthenticated){
-          return const LoginView();
+      if (authProvider.authStatus == AuthStatus.notAuthenticated){
+          return const AuthLayaut(child: LoginView());
       } else {
-        return const DashboardView();
+        return const DashboardLayout(child: DashboardView());
       }
     }
   );
@@ -25,10 +27,10 @@ class AdminHandlers {
       
       final authProvider = Provider.of<AuthProvider>(context!);
       
-      if (authProvider.authStatus == AuthStatus.noAuthenticated){
-          return const RegisterView();
+      if (authProvider.authStatus == AuthStatus.notAuthenticated){
+          return const AuthLayaut(child: RegisterView());
       } else {
-        return const DashboardView();
+        return const DashboardLayout(child: DashboardView());
       }
     }
   );

@@ -13,7 +13,7 @@ import 'package:admin_dashboard/services/notifications_service.dart';
 enum AuthStatus {
   checking,
   authenticated,
-  noAuthenticated
+  notAuthenticated
 }
 
 class AuthProvider extends ChangeNotifier{
@@ -102,7 +102,7 @@ class AuthProvider extends ChangeNotifier{
 
   logout(){
     LocalStorage.prefs.remove('token');
-    authStatus = AuthStatus.noAuthenticated;
+    authStatus = AuthStatus.notAuthenticated;
     notifyListeners();
   }
 
@@ -110,7 +110,7 @@ class AuthProvider extends ChangeNotifier{
     final token = LocalStorage.prefs.getString('token');
 
     if (token == null){
-      authStatus = AuthStatus.noAuthenticated;
+      authStatus = AuthStatus.notAuthenticated;
       notifyListeners(); 
       return false;
     }
@@ -119,15 +119,16 @@ class AuthProvider extends ChangeNotifier{
       final resp = await CafeApi.httpGet('/auth');
       final authResponse = AuthResponse.fromMap(resp);
       // para mantener conectado por 2 semanas 
-      //LocalStorage.prefs.setString('token', authResponse.token);
+      LocalStorage.prefs.setString('token', authResponse.token);
 
       user=authResponse.usuario;
       authStatus = AuthStatus.authenticated;
+      CafeApi.configureDio();
       notifyListeners();
       return true;
     } catch (e) {
       //print(e);
-      authStatus = AuthStatus.noAuthenticated;
+      authStatus = AuthStatus.notAuthenticated;
       notifyListeners();
       return false;
     }

@@ -1,5 +1,7 @@
 
+import 'package:admin_dashboard/ui/views/views.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_dashboard/api/cafe_api.dart';
 
@@ -13,10 +15,11 @@ import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
 
 void main() async {
-  
+  WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.configurePrefs();
   CafeApi.configureDio();
   Flurorouter.configureRoutes();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   runApp(const AppState());
 }
 
@@ -51,17 +54,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
       scaffoldMessengerKey: NotificationsService.messagerKey,
-      builder: ( _, child ){
-        final authProvider = Provider.of<AuthProvider>(context);
-        if (authProvider.authStatus == AuthStatus.checking){ 
-          return const SplashLayout();
-          }
-        if (authProvider.authStatus == AuthStatus.authenticated){ 
-          return DashboardLayout(child: child!);
-        } else {
-          return AuthLayaut(child: child!);
-        }
-      },
+      home: const App(),
       theme: ThemeData.light().copyWith(
         scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(
@@ -70,5 +63,25 @@ class MyApp extends StatelessWidget {
         )
       )
     );
+  }
+}
+
+
+class App extends StatelessWidget {
+
+  const App({super.key,});
+
+  @override
+  Widget build(BuildContext context) {
+
+      final authProvider = Provider.of<AuthProvider>(context);
+      if (authProvider.authStatus == AuthStatus.checking){ 
+        return const SafeArea(child: SplashLayout());
+        }
+      if (authProvider.authStatus == AuthStatus.authenticated){ 
+        return const SafeArea(child: DashboardLayout(child: DashboardView(),));
+      } else {
+        return const SafeArea(child: AuthLayaut(child: LoginView(),));
+      }
   }
 }

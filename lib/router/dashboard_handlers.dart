@@ -1,4 +1,6 @@
 
+import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
+import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_dashboard/router/router.dart';
@@ -18,9 +20,9 @@ class DashboardHandlers {
       Provider.of<SideMenuProvider>(context, listen: false).setCurrentPageUrl(Flurorouter.dashboardRoute);
       
       if (authProvider.authStatus == AuthStatus.authenticated){
-        return const DashboardView();
+        return const DashboardLayout(child: DashboardView());
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );  
@@ -33,9 +35,9 @@ class DashboardHandlers {
       Provider.of<SideMenuProvider>(context, listen: false).setCurrentPageUrl(Flurorouter.iconsRoute);
       
       if (authProvider.authStatus == AuthStatus.authenticated){
-        return const IconsView();
+        return const DashboardLayout(child: IconsView());
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );  
@@ -48,9 +50,9 @@ class DashboardHandlers {
       Provider.of<SideMenuProvider>(context, listen: false).setCurrentPageUrl(Flurorouter.blankRoute);
       
       if (authProvider.authStatus == AuthStatus.authenticated){
-        return const BlankView();
+        return const DashboardLayout(child: BlankView());
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );
@@ -63,9 +65,9 @@ class DashboardHandlers {
       Provider.of<SideMenuProvider>(context, listen: false).setCurrentPageUrl(Flurorouter.categoriesRoute);
       
       if (authProvider.authStatus == AuthStatus.authenticated){
-        return const CategoriesView();
+        return const DashboardLayout(child: CategoriesView());
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );
@@ -78,9 +80,9 @@ class DashboardHandlers {
       Provider.of<SideMenuProvider>(context, listen: false).setCurrentPageUrl(Flurorouter.productsRoute);
       
       if (authProvider.authStatus == AuthStatus.authenticated){
-        return const ProductsView();
+        return const DashboardLayout(child: ProductsView());
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );
@@ -93,9 +95,9 @@ class DashboardHandlers {
       Provider.of<SideMenuProvider>(context, listen: false).setCurrentPageUrl(Flurorouter.usersRoute);
       
       if (authProvider.authStatus == AuthStatus.authenticated){
-        return const UsersView();
+        return const DashboardLayout(child: UsersView());
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );
@@ -108,12 +110,12 @@ class DashboardHandlers {
       
       if (authProvider.authStatus == AuthStatus.authenticated){
         if (params['uid']?.first != null){
-          return UserView(uid: params['uid']!.first);
+          return DashboardLayout(child: UserView(uid: params['uid']!.first));
         } else{
-          return const UsersView();
+          return const DashboardLayout(child: UsersView());
         }
       } else {
-        return const LoginView();
+        return const AuthLayaut(child: LoginView());
       }
     }
   );

@@ -42,7 +42,9 @@ class UsersProvider extends ChangeNotifier{
 
     try {
       final resp = await CafeApi.httpGet('/usuarios/$uid');
+      print('salida $resp');
       final user = Usuario.fromMap(resp); 
+      print(user.nombre);
       return user;
     } catch (e) {
      return null;

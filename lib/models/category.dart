@@ -4,30 +4,34 @@ import 'dart:convert';
 
 class Categoria {
 
-    Categoria({
-        required this.id,
-        required this.nombre,
-        required this.usuario,
-    });
-
-    String id;
+    String uid;
     String nombre;
     _Usuario usuario;
+    String? img;
+
+    Categoria({
+        required this.uid,
+        required this.nombre,
+        required this.usuario,
+        this.img,
+    });
 
     factory Categoria.fromJson(String str) => Categoria.fromMap(json.decode(str));
 
     String toJson() => json.encode(toMap());
 
     factory Categoria.fromMap(Map<String, dynamic> json) => Categoria(
-        id: json["_id"],
+        uid: json["uid"],
         nombre: json["nombre"],
         usuario: _Usuario.fromMap(json["usuario"]),
+        img: json["img"],
     );
 
     Map<String, dynamic> toMap() => {
-        "_id": id,
+        "uid": uid,
         "nombre": nombre,
         "usuario": usuario.toMap(),
+        "img": img,
     };
 
     @override
@@ -37,14 +41,14 @@ class Categoria {
 }
 
 class _Usuario {
+    
+    String id;
+    String nombre;
 
     _Usuario({
         required this.id,
         required this.nombre,
     });
-    
-    String id;
-    String nombre;
 
     factory _Usuario.fromJson(String str) => _Usuario.fromMap(json.decode(str));
 

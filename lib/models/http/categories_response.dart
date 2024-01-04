@@ -5,13 +5,13 @@ import 'package:admin_dashboard/models/category.dart';
 
 class CategoriesResponse {
 
+    int total;
+    List<Categoria> categorias;
+
     CategoriesResponse({
         required this.total,
         required this.categorias,
     });
-
-    int total;
-    List<Categoria> categorias;
 
     factory CategoriesResponse.fromJson(String str) => CategoriesResponse.fromMap(json.decode(str));
 

@@ -23,7 +23,7 @@ class CategoriesDTS extends DataTableSource{
     return DataRow.byIndex (
       index: index,
       cells: [
-        DataCell(Text(categoria.id)),
+        DataCell(Text(categoria.uid)),
         DataCell(Text(categoria.nombre)),
         DataCell(Text(categoria.usuario.nombre)),
         DataCell(Row(
@@ -48,7 +48,7 @@ class CategoriesDTS extends DataTableSource{
                     TextButton( onPressed: (){Navigator.of(context).pop();}, child: const Text('No') ),               
                     TextButton( 
                       onPressed: () async {
-                        await Provider.of<CategoriesProvider>(context,listen: false).deleteCategory(categoria.id);
+                        await Provider.of<CategoriesProvider>(context,listen: false).deleteCategory(categoria.uid);
                         Navigator.of(context).pop();
                       }, child: const Text('Si') )
                   ]

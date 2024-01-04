@@ -30,7 +30,7 @@ class _CategoriesModalState extends State<CategoriesModal> {
   @override
   void initState() {
     super.initState();
-    id= widget.categoria?.id;
+    id= widget.categoria?.uid;
     nombre = widget.categoria?.nombre ?? '';
   }
 
@@ -42,7 +42,7 @@ class _CategoriesModalState extends State<CategoriesModal> {
     return Container(
       padding: const EdgeInsets.all(20),
       height: 300,
-      width: 100,
+      width: 400,
       decoration: buildBoxDecoration(),
       child: Column(
         children: [

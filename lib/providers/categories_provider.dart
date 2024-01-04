@@ -42,7 +42,7 @@ class CategoriesProvider extends ChangeNotifier{
       await CafeApi.httpPut('/categorias/$id',data);
       categories = categories.map(
         (category) {
-          if (category.id != id) return category;
+          if (category.uid != id) return category;
           category.nombre = name;
           return category;
         }
@@ -59,7 +59,7 @@ class CategoriesProvider extends ChangeNotifier{
     try {
       await CafeApi.httpDelete('/categorias/$id',{});
       
-      categories.removeWhere((category) => category.id == id);
+      categories.removeWhere((category) => category.uid == id);
       notifyListeners();
     }catch (e){
       throw('Error borrado categoría - error : $e');

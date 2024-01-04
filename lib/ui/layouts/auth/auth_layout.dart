@@ -5,10 +5,10 @@ import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_background.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/link_bar.dart';
 
-class AuthLayaut extends StatelessWidget {
+class AuthLayout extends StatelessWidget {
   
   final Widget child;
-  const AuthLayaut({super.key, required this.child});
+  const AuthLayout({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

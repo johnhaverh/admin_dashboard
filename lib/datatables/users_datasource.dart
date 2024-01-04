@@ -7,15 +7,15 @@ import 'package:admin_dashboard/models/usuario.dart';
 class UsersDTS extends DataTableSource {
 
   final List<Usuario> users;
-  //final BuildContext context;
+  final BuildContext context;
 
-  UsersDTS(this.users);
+  UsersDTS(this.context,{required this.users});
 
   @override
   DataRow? getRow(int index) {
 
     final Usuario user = users[index];
-    final image = ( user.img == null) 
+    final image = ( user.img == null || user.img == "") 
     ? const Image(image: AssetImage('no-image.jpg'),width: 40,height: 40,) 
     : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!,width: 40,height: 40,);
 
@@ -23,9 +23,9 @@ class UsersDTS extends DataTableSource {
       index: index,
       cells: [      
         DataCell(ClipOval(child: image,)),
-        DataCell(Text(user.nombre)),
-        DataCell(Text(user.correo)),
-        DataCell(Text(user.uid)),
+        DataCell(Text(user.nombre!)),
+        DataCell(Text(user.correo!)),
+        DataCell(Text(user.uid!)),
         DataCell(Row(
           children: [
             IconButton(

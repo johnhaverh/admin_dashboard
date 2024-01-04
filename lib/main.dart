@@ -81,7 +81,7 @@ class App extends StatelessWidget {
       if (authProvider.authStatus == AuthStatus.authenticated){ 
         return const SafeArea(child: DashboardLayout(child: DashboardView(),));
       } else {
-        return const SafeArea(child: AuthLayaut(child: LoginView(),));
+        return const SafeArea(child: AuthLayout(child: LoginView(),));
       }
   }
 }

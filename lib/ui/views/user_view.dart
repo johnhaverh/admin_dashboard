@@ -13,7 +13,7 @@ import 'package:admin_dashboard/services/notifications_service.dart';
 
 import 'package:admin_dashboard/models/usuario.dart';
 
-import 'package:admin_dashboard/ui/buttons/link_text.dart';
+// import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
@@ -48,15 +48,16 @@ class _UserViewState extends State<UserView> {
     });
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    user = null;
-    Provider.of<UserFormProvider>(context, listen: false).user = null;
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   user = null;
+  //   Provider.of<UserFormProvider>(context, listen: false).user = null;
+  // }
 
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: ListView(
@@ -65,7 +66,7 @@ class _UserViewState extends State<UserView> {
           Row(
             children: [
               Center(child: Text('User View', style: CustomLabels.h1,)),
-              Spacer(),
+              const Spacer(),
               // LinkText(text: 'Volver', color: Colors.blueAccent,onPressed: () {Navigator.pushReplacementNamed(context, Flurorouter.usersRoute);}),
 
               ConstrainedBox(
@@ -168,7 +169,7 @@ class _UserViewForm extends StatelessWidget {
             ),
             const SizedBox(height: 20,),
             ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 120),
+              constraints: const BoxConstraints(maxWidth: 140),
               child: ElevatedButton(
                 onPressed: () async {
                   final saved = await userFormProvider.updateUser();
@@ -182,7 +183,7 @@ class _UserViewForm extends StatelessWidget {
                   }
                 }, 
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.indigo),
+                  backgroundColor: MaterialStateProperty.all(Colors.indigo.withOpacity(0.5)),
                   shadowColor: MaterialStateProperty.all(Colors.transparent)
                 ),
                 child: const Row(
@@ -210,7 +211,7 @@ class _AvatarContainer extends StatelessWidget {
 
     final userFormProvider = Provider.of<UserFormProvider>(context);
     final user = userFormProvider.user!;
-    final image = ( user.img == null) 
+    final image = ( user.img == null || user.img == '') 
     ? const Image(image: AssetImage('no-image.jpg')) 
     : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!);
 

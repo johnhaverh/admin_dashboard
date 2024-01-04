@@ -23,7 +23,7 @@ class NavbarAvatar extends StatelessWidget {
       ),
     );
   }
-}
+} 
 
 
 PopupMenuButton<String> _popupMenuButton(BuildContext context) {
@@ -31,7 +31,7 @@ PopupMenuButton<String> _popupMenuButton(BuildContext context) {
   final authProvider = Provider.of<AuthProvider>(context);
 
   final user = authProvider.user!;
-  final image = ( user.img == null) 
+  final image = ( user.img == null || user.img == '') 
   ? const Image(image: AssetImage('no-image.jpg')) 
   : FadeInImage.assetNetwork(placeholder: 'loader.gif', image: user.img!);
     
@@ -53,19 +53,21 @@ PopupMenuButton<String> _popupMenuButton(BuildContext context) {
 
 
 void seleccionOpcion(String choice) {
+  final authProvider = Provider.of<AuthProvider>(NavigationService.navigatorKey.currentContext!, listen: false);
 
   switch (choice){
     case DropDownItems.option1:
-         print('Funcionalidad opcion 1');
+        //  print('Funcionalidad opcion 1');
          break;    
     case DropDownItems.option2:
-         print('Funcionalidad opcion 2');
+        //  print('Funcionalidad opcion 2');
          break;    
     case DropDownItems.option3:
-         print('Funcionalidad opcion 3');
+        //  print('Funcionalidad opcion 3');
          break;   
     case DropDownItems.perfil:
-         print('Funcionalidad perfil');
+        //  print('Funcionalidad perfil');
+        NavigationService.replaceTo('/dashboard/users/${authProvider.user?.uid}');
          break;
     case DropDownItems.salir:
          Provider.of<AuthProvider>(NavigationService.navigatorKey.currentContext!, listen: false).logout();
